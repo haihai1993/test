@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    stages {
+        stage('GIT PULL') {
+            steps {
+                echo "Installing Datadog Agent ${Choose}"
+                git branch: "master", url: 'https://github.com/haihai1993/test'
+            }
+        }
+        stage('BUILD') {
+            steps {
+                dir("android") {
+                    sh "fastlane build"
+                }
+            }
+        }
+    }
+}
